@@ -3,12 +3,11 @@
  */
 var app=require('koa')(),
     path = require('path'),
-    json = require('koa-json'),
-    logger = require('koa-logger');
+    logger = require('koa-logger'),
     surface=require('surface'),
     config=require('./config.json'),
     surface_config=require('./surface_config.js');
-//app.use(json());
+
 app.use(function *(next) {
     var start = new Date;
     yield next;
