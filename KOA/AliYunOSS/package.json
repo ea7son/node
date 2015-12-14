@@ -1,0 +1,24 @@
+{
+  "name": "aliyunoss",
+  "version": "1.0.0",
+  "description": "aliyunoss",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --harmony ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://ea7son.github.com/node/KOA/AliYuOSS"
+  },
+  "keywords": [
+    "OSS",
+    "KOA"
+  ],
+  "author": "zhangruofan",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^1.1.2",
+    "koa-logger": "^1.3.0",
+    "surface": "^0.7.12"
+  }
+}
