@@ -2,20 +2,28 @@
  * Created by zhangruofan on 2015/12/14.
  */
 var app=require('koa')(),
-    path = require('path'),
-    logger = require('koa-logger'),
     surface=require('surface'),
-    config=require('./config.json'),
-    surface_config=require('./surface_config.js');
+    //config=require('./config.json')
+    logger = require("./logger")
+    ;
 
 app.use(function *(next) {
     var start = new Date;
     yield next;
     var ms = new Date - start;
-    console.log('%s %s - %s', this.method, this.url, ms);
+    logger.debug('%s %s - %s', this.method, this.url, ms);
 });
 app.on('error', function (err, ctx) {
     logger.error('server error', err, ctx);
 });
-surface(app,surface_config);
+surface(app,{
+    authenticate:function *(){
+        //console.log(this.query);
+        return true;
+    },
+    deny:function *(){
+        this.body="action denied";
+    },
+    authenticatePattern: /^\//
+});
 module.exports=app;

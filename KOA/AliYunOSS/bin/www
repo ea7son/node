@@ -2,14 +2,14 @@
  * Created by zhangruofan on 2015/12/14.
  */
 var app=require('../app'),
-    http=require('http');
+    http=require('http'),
+    logger=require('../logger');
 var port=normalizePort(process.env.PORT || '3000');
 
 var server = http.createServer(app.callback());
 server.listen(port);
 server.on('error',onError);
-console.log('server started on %s',port);
-//server.on('listen',onListening);
+logger.info('server started on %s',port);
 
 function normalizePort(val) {
     var port = parseInt(val, 10);
@@ -35,21 +35,14 @@ function onError(error){
         : 'Port ' + port;
     switch (error.code){
         case 'EACCES':
-            console.error(bind + ' requires elevated privileges');
+            logger.error(bind + ' requires elevated privileges');
             process.exit(1);
             break;
         case 'EADDRINUSE':
-            console.error(bind + ' is already in use');
+            logger.error(bind + ' is already in use');
             process.exit(1);
             break;
         default:
             throw error;
     }
 }
-//function onListening() {
-//    var adda = server.address();
-//    var bind = typeof adda === 'string'
-//        ? 'pipe ' + adda
-//        : 'port ' + adda.port;
-//    console.log('Listening on ' + bind);
-//}
