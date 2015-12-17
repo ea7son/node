@@ -2,8 +2,8 @@
  * Created by zhangruofan on 2015/12/16.
  */
 var fs = require("fs");
-var errorDir = "../logs/error"
-    infoDir = "../logs/info";
+var errorDir = __dirname+"/logs/error"
+    infoDir = __dirname+"/logs/info";
 
 if (!fs.existsSync(errorDir)) {
     fs.mkdirSync(errorDir);
@@ -17,7 +17,7 @@ var logger = new winston.Logger({
     level: "debug",
     exceptionHandlers: [
         new winston.transports.File({
-            filename: "../logs/exceptions.log"
+            filename:__dirname+"/logs/exceptions.log"
         })
     ],
     transports: [
